@@ -16,8 +16,18 @@ const elems = {
   dialogContent: document.getElementById('dialogContent'),
   closeDialogBtn: document.getElementById('closeDialogBtn'),
   randomCoinBtn: document.getElementById('randomCoinBtn'),
-  showPrototypeBtn: document.getElementById('showPrototypeBtn')
+  showPrototypeBtn: document.getElementById('showPrototypeBtn'),
+  intro: document.getElementById('vaultIntro'),
+  introDoor: document.getElementById('introDoor')
 };
+
+window.addEventListener('load', () => {
+  setTimeout(() => elems.introDoor.classList.add('opening'), 250);
+  setTimeout(() => {
+    elems.intro.classList.add('hidden');
+    document.body.classList.add('page-ready');
+  }, 1500);
+});
 
 fetch('coins.json')
   .then(r => r.json())
@@ -83,20 +93,11 @@ function applyFilters() {
     const matchesQuery = hay.includes(query);
     let matchesFilter = true;
     switch (activeFilter) {
-      case 'mint':
-        matchesFilter = (coin.condition || '').startsWith('MS');
-        break;
-      case 'netherlands':
-        matchesFilter = coin.country === 'Nederland';
-        break;
-      case 'prototype':
-        matchesFilter = coin.prototype;
-        break;
-      case '2011':
-        matchesFilter = coin.year === 2011;
-        break;
-      default:
-        matchesFilter = true;
+      case 'mint': matchesFilter = (coin.condition || '').startsWith('MS'); break;
+      case 'netherlands': matchesFilter = coin.country === 'Nederland'; break;
+      case 'prototype': matchesFilter = coin.prototype; break;
+      case '2011': matchesFilter = coin.year === 2011; break;
+      default: matchesFilter = true;
     }
     return matchesQuery && matchesFilter;
   });
@@ -114,25 +115,27 @@ function applyFilters() {
 }
 
 function renderGrid(coins) {
-  elems.grid.innerHTML = coins.map(coin => `
-    <article class="coin-card" data-id="${coin.id}">
-      <img class="coin-art" src="${coin.image}" alt="${escapeHtml(coin.title)}" loading="lazy">
-      <div class="coin-body">
-        <h3 class="coin-title">${escapeHtml(coin.display_name)}</h3>
-        <div class="coin-sub">${escapeHtml(coin.edition || 'No edition text imported')}</div>
-        <div class="card-foot">
-          <span class="badge">${escapeHtml(coin.condition_short || '—')}</span>
-          <span class="badge year-pill">${coin.year || 'Unknown'}</span>
+  elems.grid.innerHTML = coins.map((coin, idx) => {
+    const sector = `V59-A${String(idx + 1).padStart(2, '0')}`;
+    return `
+      <article class="coin-card" data-id="${coin.id}" data-sector="${sector}">
+        <img class="coin-art" src="${coin.image}" alt="${escapeHtml(coin.title)}" loading="lazy">
+        <div class="coin-body">
+          <h3 class="coin-title">${escapeHtml(coin.display_name)}</h3>
+          <div class="coin-sub">${escapeHtml(coin.edition || 'No edition text imported')}</div>
+          <div class="card-foot">
+            <span class="badge">${escapeHtml(coin.condition_short || '—')}</span>
+            <span class="badge year-pill">${coin.year || 'Unknown'}</span>
+          </div>
         </div>
-      </div>
-    </article>
-  `).join('');
+      </article>`;
+  }).join('');
 
   for (const card of elems.grid.querySelectorAll('.coin-card')) {
     card.addEventListener('click', () => {
       const coin = allCoins.find(c => c.id === card.dataset.id);
       renderSpotlight(coin);
-      openDialog(card.dataset.id);
+      openDialog(card.dataset.id, card.dataset.sector);
     });
   }
 }
@@ -150,11 +153,10 @@ function renderSpotlight(coin) {
         <div class="meta-item"><label>Origin</label><strong>${escapeHtml(coin.country || '—')}</strong></div>
         <div class="meta-item"><label>Status</label><strong>${coin.prototype ? 'Prototype' : 'Standard'}</strong></div>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-function openDialog(id) {
+function openDialog(id, sector = 'V59-ARC') {
   const coin = allCoins.find(c => c.id === id);
   if (!coin) return;
   elems.dialogContent.innerHTML = `
@@ -165,8 +167,9 @@ function openDialog(id) {
       <div class="dialog-copy">
         <p class="eyebrow">Vault 59 terminal inspection</p>
         <h3>${escapeHtml(coin.title)}</h3>
-        <p>This archive entry is part of the first Vault 59 prototype. Later we can expand this inspection screen with front/back images, rarity notes, acquisition info, duplicates, and private collector notes.</p>
+        <p>This archive entry is part of Vault 59 v2. Later we can expand this inspection screen with front/back images, rarity notes, acquisition info, duplicates, and private collector notes.</p>
         <div class="dialog-tags">
+          <span class="badge">Sector ${sector}</span>
           <span class="badge">Archive ID ${coin.id}</span>
           <span class="badge">${escapeHtml(coin.condition || 'Condition unknown')}</span>
           ${coin.prototype ? '<span class="badge">Prototype</span>' : ''}
@@ -181,8 +184,7 @@ function openDialog(id) {
           <div class="info-box"><label>Future upgrade</label><strong>Front/back photos + collector notes</strong></div>
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
   elems.dialog.showModal();
 }
 
