@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Penumbra59 Geocoin Vault – Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+  <header class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Prototype · based on imported LastDodo HTML</p>
+      <h1>Penumbra59 Geocoin Vault</h1>
+      <p class="lead">A first interactive prototype for your geocoin collection: searchable, filterable, with a spotlight panel, random coin button, and detailed coin cards.</p>
+      <div class="hero-actions">
+        <button id="randomCoinBtn" class="btn btn-primary">🎲 Random coin</button>
+        <button id="showPrototypeBtn" class="btn btn-secondary">✨ Coin of the day</button>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="stat"><span id="statCount">0</span><small>Coins imported</small></div>
+      <div class="stat"><span id="statYears">—</span><small>Year range</small></div>
+      <div class="stat"><span id="statMint">0</span><small>Mint state / mint condition</small></div>
+      <div class="stat"><span id="statCountries">0</span><small>Country labels</small></div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel spotlight-panel">
+        <div class="panel-header">
+          <h2>Spotlight</h2>
+          <span>Featured coin</span>
+        </div>
+        <div id="spotlight" class="spotlight-empty">Choose a coin to inspect it here.</div>
+      </section>
+
+      <section class="panel controls-panel">
+        <div class="panel-header">
+          <h2>Browse</h2>
+          <span>Filters & sorting</span>
+        </div>
+        <label class="control-label">Search</label>
+        <input id="searchInput" type="search" placeholder="Search by title, edition or year..." />
+
+        <label class="control-label">Quick filters</label>
+        <div class="chip-row">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="mint">Mint state</button>
+          <button class="chip" data-filter="netherlands">Nederland</button>
+          <button class="chip" data-filter="prototype">Prototype</button>
+          <button class="chip" data-filter="2011">Year 2011</button>
+        </div>
+
+        <label class="control-label">Sort</label>
+        <select id="sortSelect">
+          <option value="order">Imported order</option>
+          <option value="name">Name A → Z</option>
+          <option value="year-desc">Year newest first</option>
+          <option value="year-asc">Year oldest first</option>
+        </select>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div class="content-head">
+        <div>
+          <h2>Your collection</h2>
+          <p id="resultInfo">Loading coins…</p>
+        </div>
+      </div>
+      <div id="coinGrid" class="coin-grid"></div>
+    </section>
+  </main>
+
+  <dialog id="coinDialog" class="coin-dialog">
+    <button id="closeDialogBtn" class="close-btn" aria-label="Close">✕</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
