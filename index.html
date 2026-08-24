@@ -3,58 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Penumbra59 Geocoin Vault – Prototype</title>
+  <title>Vault 59 – Penumbra59 Geocoin Collection</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="noise"></div>
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
+
   <header class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">Prototype · based on imported LastDodo HTML</p>
-      <h1>Penumbra59 Geocoin Vault</h1>
-      <p class="lead">A first interactive prototype for your geocoin collection: searchable, filterable, with a spotlight panel, random coin button, and detailed coin cards.</p>
+    <div class="hero-copy shell-panel">
+      <p class="eyebrow">Vault 59 · Secure geocoin archive</p>
+      <h1>Enter Vault 59</h1>
+      <p class="lead">
+        A bunker-inspired showcase for Penumbra59's geocoin collection. Search the archive,
+        inspect featured coins, and browse the collection as if it were stored behind a giant underground vault door.
+      </p>
       <div class="hero-actions">
-        <button id="randomCoinBtn" class="btn btn-primary">🎲 Random coin</button>
-        <button id="showPrototypeBtn" class="btn btn-secondary">✨ Coin of the day</button>
+        <button id="randomCoinBtn" class="btn btn-primary">🔓 Open vault</button>
+        <button id="showPrototypeBtn" class="btn btn-secondary">⭐ Daily artifact</button>
+      </div>
+      <div class="hero-substats">
+        <div class="mini-stat">
+          <span id="statCount">0</span>
+          <small>Archived coins</small>
+        </div>
+        <div class="mini-stat">
+          <span id="statYears">—</span>
+          <small>Operational years</small>
+        </div>
+        <div class="mini-stat">
+          <span id="statMint">0</span>
+          <small>Mint condition</small>
+        </div>
+        <div class="mini-stat">
+          <span id="statCountries">0</span>
+          <small>Origin tags</small>
+        </div>
       </div>
     </div>
-    <div class="hero-panel">
-      <div class="stat"><span id="statCount">0</span><small>Coins imported</small></div>
-      <div class="stat"><span id="statYears">—</span><small>Year range</small></div>
-      <div class="stat"><span id="statMint">0</span><small>Mint state / mint condition</small></div>
-      <div class="stat"><span id="statCountries">0</span><small>Country labels</small></div>
+
+    <div class="hero-art shell-panel">
+      <div class="scene-rocks"></div>
+      <div class="vault-door-wrap" aria-hidden="true">
+        <div class="vault-door-shadow"></div>
+        <div class="vault-door">
+          <div class="vault-rim"></div>
+          <div class="vault-segments segments-a"></div>
+          <div class="vault-segments segments-b"></div>
+          <div class="vault-inner-ring"></div>
+          <div class="vault-core">
+            <span>59</span>
+          </div>
+          <div class="vault-arm arm-top"></div>
+          <div class="vault-arm arm-right"></div>
+          <div class="vault-arm arm-bottom"></div>
+          <div class="vault-arm arm-left"></div>
+        </div>
+      </div>
+      <div class="platform-lines"></div>
+      <div class="hero-art-copy">
+        <strong>Vault 59</strong>
+        <span>Protected geocoin storage</span>
+      </div>
     </div>
   </header>
 
   <main class="layout">
     <aside class="sidebar">
-      <section class="panel spotlight-panel">
+      <section class="panel shell-panel spotlight-panel">
         <div class="panel-header">
-          <h2>Spotlight</h2>
-          <span>Featured coin</span>
+          <h2>Vault inspection</h2>
+          <span>Featured artifact</span>
         </div>
-        <div id="spotlight" class="spotlight-empty">Choose a coin to inspect it here.</div>
+        <div id="spotlight" class="spotlight-empty">Select a coin to inspect it in the vault terminal.</div>
       </section>
 
-      <section class="panel controls-panel">
+      <section class="panel shell-panel controls-panel">
         <div class="panel-header">
-          <h2>Browse</h2>
-          <span>Filters & sorting</span>
+          <h2>Archive terminal</h2>
+          <span>Search & filter</span>
         </div>
-        <label class="control-label">Search</label>
-        <input id="searchInput" type="search" placeholder="Search by title, edition or year..." />
+        <label class="control-label">Search archive</label>
+        <input id="searchInput" type="search" placeholder="Search by title, edition, country or year..." />
 
-        <label class="control-label">Quick filters</label>
+        <label class="control-label">Quick protocols</label>
         <div class="chip-row">
-          <button class="chip active" data-filter="all">All</button>
+          <button class="chip active" data-filter="all">All sectors</button>
           <button class="chip" data-filter="mint">Mint state</button>
           <button class="chip" data-filter="netherlands">Nederland</button>
           <button class="chip" data-filter="prototype">Prototype</button>
           <button class="chip" data-filter="2011">Year 2011</button>
         </div>
 
-        <label class="control-label">Sort</label>
+        <label class="control-label">Sort archive</label>
         <select id="sortSelect">
           <option value="order">Imported order</option>
           <option value="name">Name A → Z</option>
@@ -65,10 +107,11 @@
     </aside>
 
     <section class="content">
-      <div class="content-head">
+      <div class="content-head shell-panel">
         <div>
-          <h2>Your collection</h2>
-          <p id="resultInfo">Loading coins…</p>
+          <p class="eyebrow smaller">Collection sector</p>
+          <h2>Archive inventory</h2>
+          <p id="resultInfo">Loading vault records…</p>
         </div>
       </div>
       <div id="coinGrid" class="coin-grid"></div>
