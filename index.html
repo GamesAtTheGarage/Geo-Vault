@@ -7,121 +7,149 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="bg-glow glow-1"></div>
-  <div class="bg-glow glow-2"></div>
-
-  <header class="hero">
-    <div class="hero-copy shell-panel">
-      <p class="eyebrow">Vault 59 · Secure geocoin archive</p>
-      <h1>Enter Vault 59</h1>
-      <p class="lead">
-        A bunker-inspired showcase for Penumbra59's geocoin collection. Search the archive,
-        inspect featured coins, and browse the collection as if it were stored behind a giant underground vault door.
-      </p>
-      <div class="hero-actions">
-        <button id="randomCoinBtn" class="btn btn-primary">🔓 Open vault</button>
-        <button id="showPrototypeBtn" class="btn btn-secondary">⭐ Daily artifact</button>
-      </div>
-      <div class="hero-substats">
-        <div class="mini-stat">
-          <span id="statCount">0</span>
-          <small>Archived coins</small>
-        </div>
-        <div class="mini-stat">
-          <span id="statYears">—</span>
-          <small>Operational years</small>
-        </div>
-        <div class="mini-stat">
-          <span id="statMint">0</span>
-          <small>Mint condition</small>
-        </div>
-        <div class="mini-stat">
-          <span id="statCountries">0</span>
-          <small>Origin tags</small>
+  <div id="vaultIntro" class="vault-intro" aria-hidden="true">
+    <div class="intro-door-scene">
+      <div class="intro-warning">Vault 59 archive access</div>
+      <div class="intro-door-frame">
+        <div class="intro-door-shadow"></div>
+        <div class="intro-door" id="introDoor">
+          <div class="intro-rim"></div>
+          <div class="intro-segments seg-a"></div>
+          <div class="intro-segments seg-b"></div>
+          <div class="intro-inner"></div>
+          <div class="intro-center"><span>59</span></div>
+          <div class="intro-arm arm-top"></div>
+          <div class="intro-arm arm-right"></div>
+          <div class="intro-arm arm-bottom"></div>
+          <div class="intro-arm arm-left"></div>
         </div>
       </div>
+      <div class="intro-status">Unlocking geocoin archive…</div>
     </div>
+  </div>
 
-    <div class="hero-art shell-panel">
-      <div class="scene-rocks"></div>
-      <div class="vault-door-wrap" aria-hidden="true">
-        <div class="vault-door-shadow"></div>
-        <div class="vault-door">
-          <div class="vault-rim"></div>
-          <div class="vault-segments segments-a"></div>
-          <div class="vault-segments segments-b"></div>
-          <div class="vault-inner-ring"></div>
-          <div class="vault-core">
-            <span>59</span>
+  <div class="page-shell hidden-until-loaded" id="pageShell">
+    <div class="noise"></div>
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <header class="hero shell-panel">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Vault 59 · Secure geocoin archive</p>
+            <span class="badge warning-badge">Restricted collector access</span>
           </div>
-          <div class="vault-arm arm-top"></div>
-          <div class="vault-arm arm-right"></div>
-          <div class="vault-arm arm-bottom"></div>
-          <div class="vault-arm arm-left"></div>
-        </div>
-      </div>
-      <div class="platform-lines"></div>
-      <div class="hero-art-copy">
-        <strong>Vault 59</strong>
-        <span>Protected geocoin storage</span>
-      </div>
-    </div>
-  </header>
+          <h1>Enter Vault 59</h1>
+          <p class="lead">
+            A bunker-inspired archive for Penumbra59’s geocoin collection. Search the vault,
+            inspect rare finds, and browse the collection as if it were secured behind a massive underground door.
+          </p>
 
-  <main class="layout">
-    <aside class="sidebar">
-      <section class="panel shell-panel spotlight-panel">
-        <div class="panel-header">
-          <h2>Vault inspection</h2>
-          <span>Featured artifact</span>
+          <div class="hero-actions">
+            <button id="randomCoinBtn" class="btn btn-primary">🔓 Open vault</button>
+            <button id="showPrototypeBtn" class="btn btn-secondary">⭐ Daily artifact</button>
+          </div>
+
+          <div class="hero-substats">
+            <div class="mini-stat"><span id="statCount">0</span><small>Archived coins</small></div>
+            <div class="mini-stat"><span id="statYears">—</span><small>Operational years</small></div>
+            <div class="mini-stat"><span id="statMint">0</span><small>Mint condition</small></div>
+            <div class="mini-stat"><span id="statCountries">0</span><small>Origin tags</small></div>
+          </div>
         </div>
-        <div id="spotlight" class="spotlight-empty">Select a coin to inspect it in the vault terminal.</div>
+
+        <div class="hero-vault-scene">
+          <div class="hero-rock hero-rock-left"></div>
+          <div class="hero-rock hero-rock-mid"></div>
+          <div class="hero-rock hero-rock-right"></div>
+          <div class="hazard-strip"></div>
+          <div class="vault-platform"></div>
+          <div class="vault-number-plate">VAULT 59</div>
+
+          <div class="hero-door-wrap">
+            <div class="door-shadow"></div>
+            <div class="hero-door">
+              <div class="door-rim"></div>
+              <div class="door-segments seg-a"></div>
+              <div class="door-segments seg-b"></div>
+              <div class="door-inner"></div>
+              <div class="door-center"><span>59</span></div>
+              <div class="door-arm arm-top"></div>
+              <div class="door-arm arm-right"></div>
+              <div class="door-arm arm-bottom"></div>
+              <div class="door-arm arm-left"></div>
+            </div>
+          </div>
+
+          <div class="terminal-ribbon">
+            <strong>Geo-Vault Archive</strong>
+            <span>Protected geocoin storage</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="panel shell-panel spotlight-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow smaller">Inspection terminal</p>
+              <h2>Vault inspection</h2>
+            </div>
+            <span>Featured artifact</span>
+          </div>
+          <div id="spotlight" class="spotlight-empty">Select a coin to inspect it in the vault terminal.</div>
+        </section>
+
+        <section class="panel shell-panel controls-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow smaller">Access controls</p>
+              <h2>Archive terminal</h2>
+            </div>
+            <span>Search & filter</span>
+          </div>
+          <label class="control-label">Search archive</label>
+          <input id="searchInput" type="search" placeholder="Search by title, edition, country or year..." />
+
+          <label class="control-label">Quick protocols</label>
+          <div class="chip-row">
+            <button class="chip active" data-filter="all">All sectors</button>
+            <button class="chip" data-filter="mint">Mint state</button>
+            <button class="chip" data-filter="netherlands">Nederland</button>
+            <button class="chip" data-filter="prototype">Prototype</button>
+            <button class="chip" data-filter="2011">Year 2011</button>
+          </div>
+
+          <label class="control-label">Sort archive</label>
+          <select id="sortSelect">
+            <option value="order">Imported order</option>
+            <option value="name">Name A → Z</option>
+            <option value="year-desc">Year newest first</option>
+            <option value="year-asc">Year oldest first</option>
+          </select>
+        </section>
+      </aside>
+
+      <section class="content">
+        <div class="content-head shell-panel">
+          <div>
+            <p class="eyebrow smaller">Collection sector</p>
+            <h2>Archive inventory</h2>
+            <p id="resultInfo">Loading vault records…</p>
+          </div>
+        </div>
+        <div id="coinGrid" class="coin-grid"></div>
       </section>
+    </main>
 
-      <section class="panel shell-panel controls-panel">
-        <div class="panel-header">
-          <h2>Archive terminal</h2>
-          <span>Search & filter</span>
-        </div>
-        <label class="control-label">Search archive</label>
-        <input id="searchInput" type="search" placeholder="Search by title, edition, country or year..." />
-
-        <label class="control-label">Quick protocols</label>
-        <div class="chip-row">
-          <button class="chip active" data-filter="all">All sectors</button>
-          <button class="chip" data-filter="mint">Mint state</button>
-          <button class="chip" data-filter="netherlands">Nederland</button>
-          <button class="chip" data-filter="prototype">Prototype</button>
-          <button class="chip" data-filter="2011">Year 2011</button>
-        </div>
-
-        <label class="control-label">Sort archive</label>
-        <select id="sortSelect">
-          <option value="order">Imported order</option>
-          <option value="name">Name A → Z</option>
-          <option value="year-desc">Year newest first</option>
-          <option value="year-asc">Year oldest first</option>
-        </select>
-      </section>
-    </aside>
-
-    <section class="content">
-      <div class="content-head shell-panel">
-        <div>
-          <p class="eyebrow smaller">Collection sector</p>
-          <h2>Archive inventory</h2>
-          <p id="resultInfo">Loading vault records…</p>
-        </div>
-      </div>
-      <div id="coinGrid" class="coin-grid"></div>
-    </section>
-  </main>
-
-  <dialog id="coinDialog" class="coin-dialog">
-    <button id="closeDialogBtn" class="close-btn" aria-label="Close">✕</button>
-    <div id="dialogContent"></div>
-  </dialog>
+    <dialog id="coinDialog" class="coin-dialog">
+      <button id="closeDialogBtn" class="close-btn" aria-label="Close">✕</button>
+      <div id="dialogContent"></div>
+    </dialog>
+  </div>
 
   <script src="script.js"></script>
 </body>
