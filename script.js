@@ -22,11 +22,11 @@ const elems = {
 };
 
 window.addEventListener('load', () => {
-  setTimeout(() => elems.introDoor.classList.add('opening-sequence'), 250);
+  setTimeout(() => elems.introDoor.classList.add('opening'), 250);
   setTimeout(() => {
     elems.intro.classList.add('hidden');
     document.body.classList.add('page-ready');
-  }, 2350);
+  }, 1500);
 });
 
 fetch('coins.json')
@@ -167,7 +167,7 @@ function openDialog(id, sector = 'V59-ARC') {
       <div class="dialog-copy">
         <p class="eyebrow">Vault 59 terminal inspection</p>
         <h3>${escapeHtml(coin.title)}</h3>
-        <p>This archive entry is part of Vault 59 V3. Later we can expand this inspection screen with front/back images, rarity notes, acquisition info, duplicates, and private collector notes.</p>
+        <p>This archive entry is part of Vault 59 v2. Later we can expand this inspection screen with front/back images, rarity notes, acquisition info, duplicates, and private collector notes.</p>
         <div class="dialog-tags">
           <span class="badge">Sector ${sector}</span>
           <span class="badge">Archive ID ${coin.id}</span>
