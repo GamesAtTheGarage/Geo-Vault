@@ -95,7 +95,9 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/20/f/3/a/pdf_f3ae49f2-8436-11f1-9eb0-c6640a039028.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   },
   {
     "id": "175571793",
@@ -109,7 +111,10 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/21/9/5/a/pdf_95a980c6-84c0-11f1-9552-545e67fec4b3.jpg",
     "source": "LastDodo HTML import",
     "prototype": true,
-    "tags": ["Nederland", "prototype"]
+    "tags": [
+      "Nederland",
+      "prototype"
+    ]
   },
   {
     "id": "175571017",
@@ -123,7 +128,9 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/20/7/3/3/pdf_733c863a-8431-11f1-9c31-ffabd0471f19.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   },
   {
     "id": "175570077",
@@ -137,7 +144,9 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/20/3/a/b/pdf_3ab706e6-842c-11f1-9ea2-6f803d7a5e26.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   },
   {
     "id": "175568401",
@@ -151,7 +160,9 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/20/c/b/7/pdf_cb75a6fa-8423-11f1-8f70-5861deae3246.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   },
   {
     "id": "175568167",
@@ -165,7 +176,9 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/20/1/0/0/pdf_100f2234-8422-11f1-8052-4902afcc116c.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   },
   {
     "id": "175567645",
@@ -179,7 +192,9 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/21/f/6/5/pdf_f65ec218-84c6-11f1-9fa6-cec280d3ebe0.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   },
   {
     "id": "175567643",
@@ -193,7 +208,9 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2026/7/21/6/6/d/pdf_66de3bbe-84c6-11f1-85b8-82bcccdb619c.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   },
   {
     "id": "175567637",
@@ -207,6 +224,8 @@
     "image": "https://assets.lastdodo.com/image/ld_thumb3/plain/assets/catalog/assets/2013/9/26/5/0/9/pdf_50979d0c-26f4-11e3-9229-b6a9d2205087.jpg",
     "source": "LastDodo HTML import",
     "prototype": false,
-    "tags": ["Nederland"]
+    "tags": [
+      "Nederland"
+    ]
   }
 ]
