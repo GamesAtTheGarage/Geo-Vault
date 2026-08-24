@@ -1,7 +1,6 @@
 let allCoins = [];
 let filteredCoins = [];
 let activeFilter = 'all';
-let spotlightId = null;
 
 const elems = {
   grid: document.getElementById('coinGrid'),
@@ -23,26 +22,25 @@ const elems = {
 fetch('coins.json')
   .then(r => r.json())
   .then(coins => {
-    allCoins = coins.map((coin, index) => ({...coin, import_order: index + 1}));
+    allCoins = coins.map((coin, index) => ({ ...coin, import_order: index + 1 }));
     updateStats();
     applyFilters();
-    const featured = coinOfTheDay();
-    renderSpotlight(featured);
+    renderSpotlight(coinOfTheDay());
   });
 
-document.querySelectorAll('.chip').forEach(chip => {
+for (const chip of document.querySelectorAll('.chip')) {
   chip.addEventListener('click', () => {
-    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    for (const c of document.querySelectorAll('.chip')) c.classList.remove('active');
     chip.classList.add('active');
     activeFilter = chip.dataset.filter;
     applyFilters();
   });
-});
+}
 
 elems.searchInput.addEventListener('input', applyFilters);
 elems.sortSelect.addEventListener('change', applyFilters);
 elems.closeDialogBtn.addEventListener('click', () => elems.dialog.close());
-elems.dialog.addEventListener('click', (event) => {
+elems.dialog.addEventListener('click', event => {
   const rect = elems.dialog.getBoundingClientRect();
   const inDialog = rect.top <= event.clientY && event.clientY <= rect.top + rect.height && rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
   if (!inDialog) elems.dialog.close();
@@ -64,20 +62,18 @@ elems.showPrototypeBtn.addEventListener('click', () => {
 
 function updateStats() {
   elems.statCount.textContent = allCoins.length;
-  const years = allCoins.map(c => c.year).filter(Boolean).sort((a,b)=>a-b);
-  elems.statYears.textContent = years.length ? `${years[0]}–${years[years.length-1]}` : 'Unknown';
+  const years = allCoins.map(c => c.year).filter(Boolean).sort((a, b) => a - b);
+  elems.statYears.textContent = years.length ? `${years[0]}–${years[years.length - 1]}` : 'Unknown';
   elems.statMint.textContent = allCoins.filter(c => (c.condition || '').startsWith('MS')).length;
-  const countries = new Set(allCoins.map(c => c.country).filter(Boolean));
-  elems.statCountries.textContent = countries.size;
+  elems.statCountries.textContent = new Set(allCoins.map(c => c.country).filter(Boolean)).size;
 }
 
 function coinOfTheDay() {
   const today = new Date();
-  const key = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+  const key = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   let hash = 0;
   for (const ch of key) hash = ((hash << 5) - hash) + ch.charCodeAt(0);
-  const idx = Math.abs(hash) % allCoins.length;
-  return allCoins[idx];
+  return allCoins[Math.abs(hash) % allCoins.length];
 }
 
 function applyFilters() {
@@ -114,7 +110,7 @@ function applyFilters() {
   });
 
   renderGrid(filteredCoins);
-  elems.resultInfo.textContent = `${filteredCoins.length} coin${filteredCoins.length === 1 ? '' : 's'} shown from ${allCoins.length} imported item${allCoins.length === 1 ? '' : 's'}.`;
+  elems.resultInfo.textContent = `${filteredCoins.length} artifact${filteredCoins.length === 1 ? '' : 's'} shown from ${allCoins.length} archived item${allCoins.length === 1 ? '' : 's'}.`;
 }
 
 function renderGrid(coins) {
@@ -129,20 +125,20 @@ function renderGrid(coins) {
           <span class="badge year-pill">${coin.year || 'Unknown'}</span>
         </div>
       </div>
-    </article>`).join('');
+    </article>
+  `).join('');
 
-  elems.grid.querySelectorAll('.coin-card').forEach(card => {
+  for (const card of elems.grid.querySelectorAll('.coin-card')) {
     card.addEventListener('click', () => {
       const coin = allCoins.find(c => c.id === card.dataset.id);
       renderSpotlight(coin);
       openDialog(card.dataset.id);
     });
-  });
+  }
 }
 
 function renderSpotlight(coin) {
   if (!coin) return;
-  spotlightId = coin.id;
   elems.spotlight.innerHTML = `
     <div class="spotlight-card">
       <img src="${coin.image}" alt="${escapeHtml(coin.title)}">
@@ -151,10 +147,11 @@ function renderSpotlight(coin) {
       <div class="meta-list">
         <div class="meta-item"><label>Year</label><strong>${coin.year || 'Unknown'}</strong></div>
         <div class="meta-item"><label>Condition</label><strong>${escapeHtml(coin.condition_short || '—')}</strong></div>
-        <div class="meta-item"><label>Country</label><strong>${escapeHtml(coin.country || '—')}</strong></div>
-        <div class="meta-item"><label>Special</label><strong>${coin.prototype ? 'Prototype' : 'Standard'}</strong></div>
+        <div class="meta-item"><label>Origin</label><strong>${escapeHtml(coin.country || '—')}</strong></div>
+        <div class="meta-item"><label>Status</label><strong>${coin.prototype ? 'Prototype' : 'Standard'}</strong></div>
       </div>
-    </div>`;
+    </div>
+  `;
 }
 
 function openDialog(id) {
@@ -166,11 +163,11 @@ function openDialog(id) {
         <img src="${coin.image}" alt="${escapeHtml(coin.title)}">
       </div>
       <div class="dialog-copy">
-        <p class="eyebrow">Imported from LastDodo HTML prototype</p>
+        <p class="eyebrow">Vault 59 terminal inspection</p>
         <h3>${escapeHtml(coin.title)}</h3>
-        <p>This is a first-pass imported collection card. Later, this view could evolve into a real “inspection mode” with front/back photos, flips, notes, tracking-safe image handling, duplicates, and richer collection metadata.</p>
+        <p>This archive entry is part of the first Vault 59 prototype. Later we can expand this inspection screen with front/back images, rarity notes, acquisition info, duplicates, and private collector notes.</p>
         <div class="dialog-tags">
-          <span class="badge">ID ${coin.id}</span>
+          <span class="badge">Archive ID ${coin.id}</span>
           <span class="badge">${escapeHtml(coin.condition || 'Condition unknown')}</span>
           ${coin.prototype ? '<span class="badge">Prototype</span>' : ''}
           ${coin.country ? `<span class="badge">${escapeHtml(coin.country)}</span>` : ''}
@@ -180,11 +177,12 @@ function openDialog(id) {
           <div class="info-box"><label>Edition / finish</label><strong>${escapeHtml(coin.edition || '—')}</strong></div>
           <div class="info-box"><label>Year</label><strong>${coin.year || 'Unknown'}</strong></div>
           <div class="info-box"><label>Source</label><strong>${escapeHtml(coin.source)}</strong></div>
-          <div class="info-box"><label>Collection type</label><strong>Geocoin / token medal</strong></div>
-          <div class="info-box"><label>Next idea</label><strong>Front/back photos + custom notes</strong></div>
+          <div class="info-box"><label>Sector</label><strong>Geocoin archive</strong></div>
+          <div class="info-box"><label>Future upgrade</label><strong>Front/back photos + collector notes</strong></div>
         </div>
       </div>
-    </div>`;
+    </div>
+  `;
   elems.dialog.showModal();
 }
 
