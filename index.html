@@ -8,23 +8,29 @@
 </head>
 <body>
   <div id="vaultIntro" class="vault-intro" aria-hidden="true">
-    <div class="intro-door-scene">
-      <div class="intro-warning">Vault 59 archive access</div>
-      <div class="intro-door-frame">
-        <div class="intro-door-shadow"></div>
-        <div class="intro-door" id="introDoor">
-          <div class="intro-rim"></div>
-          <div class="intro-segments seg-a"></div>
-          <div class="intro-segments seg-b"></div>
-          <div class="intro-inner"></div>
-          <div class="intro-center"><span>59</span></div>
-          <div class="intro-arm arm-top"></div>
-          <div class="intro-arm arm-right"></div>
-          <div class="intro-arm arm-bottom"></div>
-          <div class="intro-arm arm-left"></div>
-        </div>
+    <div class="intro-copy">
+      <p class="eyebrow">Vault 59 · Archive access</p>
+      <h1>Unlocking Vault 59</h1>
+      <p>Authenticating secure geocoin archive. Please stand clear of the door mechanism.</p>
+    </div>
+    <div class="intro-scene">
+      <div class="intro-wall"></div>
+      <div class="intro-opening-wrap">
+        <div class="tunnel-glow"></div>
+        <div class="opening opening-intro"></div>
       </div>
-      <div class="intro-status">Unlocking geocoin archive…</div>
+      <div class="door door-intro" id="introDoor">
+        <div class="door-face"></div>
+        <div class="door-radial"></div>
+        <div class="door-hub"><span>59</span></div>
+        <div class="door-bar bar-a"></div>
+        <div class="door-bar bar-b"></div>
+        <div class="door-bar bar-c"></div>
+        <div class="door-bar bar-d"></div>
+        <div class="door-wheel"></div>
+      </div>
+      <div class="intro-floor"></div>
+      <div class="intro-status">Door mechanism engaging…</div>
     </div>
   </div>
 
@@ -34,58 +40,52 @@
     <div class="bg-glow glow-2"></div>
 
     <header class="hero shell-panel">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow-row">
-            <p class="eyebrow">Vault 59 · Secure geocoin archive</p>
-            <span class="badge warning-badge">Restricted collector access</span>
-          </div>
-          <h1>Enter Vault 59</h1>
-          <p class="lead">
-            A bunker-inspired archive for Penumbra59’s geocoin collection. Search the vault,
-            inspect rare finds, and browse the collection as if it were secured behind a massive underground door.
-          </p>
+      <div class="hero-scene">
+        <div class="hero-chamber"></div>
+        <div class="hero-floor"></div>
+        <div class="hero-opening-wrap">
+          <div class="tunnel-glow hero-glow"></div>
+          <div class="opening opening-hero"></div>
+        </div>
+        <div class="door door-hero parked-right">
+          <div class="door-face"></div>
+          <div class="door-radial"></div>
+          <div class="door-hub"><span>59</span></div>
+          <div class="door-bar bar-a"></div>
+          <div class="door-bar bar-b"></div>
+          <div class="door-bar bar-c"></div>
+          <div class="door-bar bar-d"></div>
+          <div class="door-wheel"></div>
+        </div>
+        <div class="hazard-strip"></div>
+        <div class="hero-terminal-ribbon">
+          <strong>Geo-Vault Archive</strong>
+          <span>Door status: open</span>
+        </div>
+      </div>
 
-          <div class="hero-actions">
-            <button id="randomCoinBtn" class="btn btn-primary">🔓 Open vault</button>
-            <button id="showPrototypeBtn" class="btn btn-secondary">⭐ Daily artifact</button>
-          </div>
+      <div class="hero-overlay">
+        <div class="eyebrow-row">
+          <p class="eyebrow">Vault 59 · Secure geocoin archive</p>
+          <span class="badge warning-badge">Collector clearance only</span>
+        </div>
+        <h1>Enter Vault 59</h1>
+        <p class="lead">
+          A cinematic bunker-inspired archive for Penumbra59’s geocoin collection.
+          Browse the collection behind a giant retro-futuristic vault door, inspect rare finds,
+          and explore the archive one compartment at a time.
+        </p>
 
-          <div class="hero-substats">
-            <div class="mini-stat"><span id="statCount">0</span><small>Archived coins</small></div>
-            <div class="mini-stat"><span id="statYears">—</span><small>Operational years</small></div>
-            <div class="mini-stat"><span id="statMint">0</span><small>Mint condition</small></div>
-            <div class="mini-stat"><span id="statCountries">0</span><small>Origin tags</small></div>
-          </div>
+        <div class="hero-actions">
+          <button id="randomCoinBtn" class="btn btn-primary">🔓 Open archive</button>
+          <button id="showPrototypeBtn" class="btn btn-secondary">⭐ Daily artifact</button>
         </div>
 
-        <div class="hero-vault-scene">
-          <div class="hero-rock hero-rock-left"></div>
-          <div class="hero-rock hero-rock-mid"></div>
-          <div class="hero-rock hero-rock-right"></div>
-          <div class="hazard-strip"></div>
-          <div class="vault-platform"></div>
-          <div class="vault-number-plate">VAULT 59</div>
-
-          <div class="hero-door-wrap">
-            <div class="door-shadow"></div>
-            <div class="hero-door">
-              <div class="door-rim"></div>
-              <div class="door-segments seg-a"></div>
-              <div class="door-segments seg-b"></div>
-              <div class="door-inner"></div>
-              <div class="door-center"><span>59</span></div>
-              <div class="door-arm arm-top"></div>
-              <div class="door-arm arm-right"></div>
-              <div class="door-arm arm-bottom"></div>
-              <div class="door-arm arm-left"></div>
-            </div>
-          </div>
-
-          <div class="terminal-ribbon">
-            <strong>Geo-Vault Archive</strong>
-            <span>Protected geocoin storage</span>
-          </div>
+        <div class="hero-substats">
+          <div class="mini-stat"><span id="statCount">0</span><small>Archived coins</small></div>
+          <div class="mini-stat"><span id="statYears">—</span><small>Operational years</small></div>
+          <div class="mini-stat"><span id="statMint">0</span><small>Mint condition</small></div>
+          <div class="mini-stat"><span id="statCountries">0</span><small>Origin tags</small></div>
         </div>
       </div>
     </header>
